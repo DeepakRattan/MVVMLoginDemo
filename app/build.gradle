@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -45,5 +46,37 @@ dependencies {
 
     //sdp library
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //Retrofit
+    def retrofitVersion = '2.6.2'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$retrofitVersion"
+    implementation("com.squareup.okhttp3:logging-interceptor:4.2.0")
+
+    // ViewModel and LiveData
+    def lifecycle_version = "2.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    //Material design
+    implementation 'com.google.android.material:material:1.4.0'
+
+    //Loading Animations
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    // Kotlin Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+
+
+    // koin : dependency injection library
+    def koin_version = '1.0.2'
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+
+    // or Koin for view model features
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+
 
 }
