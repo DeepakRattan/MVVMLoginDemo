@@ -48,6 +48,7 @@
             setError="@{loginViewModel.passwordError}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             app:boxBackgroundMode="none"
             app:errorTextColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
