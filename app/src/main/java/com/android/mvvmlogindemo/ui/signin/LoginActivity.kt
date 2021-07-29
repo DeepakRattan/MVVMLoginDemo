@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.android.mvvmlogindemo.R
 import com.android.mvvmlogindemo.databinding.ActivityLoginBinding
+import com.android.mvvmlogindemo.utils.makeToast
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -24,10 +25,12 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loginResponse.observe(this, Observer {
             Log.d("test", "success : ${it.fullname}")
+            this.makeToast(it.fullname)
         })
 
         loginViewModel.isError.observe(this, Observer {
             Log.d("test", "error :$it ")
+            this.makeToast(it)
         })
     }
 }
