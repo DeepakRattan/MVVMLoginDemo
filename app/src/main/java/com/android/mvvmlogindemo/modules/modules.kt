@@ -1,9 +1,12 @@
 package com.android.mvvmlogindemo.modules
 
 import com.android.mvvmlogindemo.data.apis.Api
-import com.android.mvvmlogindemo.utils.constants.Constant
+import com.android.mvvmlogindemo.data.repos.AppRepository
+import com.android.mvvmlogindemo.ui.signin.LoginViewModel
+import com.android.mvvmlogindemo.utils.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,6 +34,14 @@ var appModule = module {
 
     single {
         createWebService<Api>(get())
+    }
+
+    single {
+        AppRepository(get())
+    }
+
+    viewModel {
+        LoginViewModel(get())
     }
 
 }
