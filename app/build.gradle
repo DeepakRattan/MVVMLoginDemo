@@ -8,6 +8,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    //enable data binding
+    buildFeatures {
+        dataBinding true
+    }
+
     defaultConfig {
         applicationId "com.android.mvvmlogindemo"
         minSdkVersion 18
@@ -55,7 +60,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.2.0")
 
     // ViewModel and LiveData
-    def lifecycle_version = "2.1.0"
+    def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     //Material design
