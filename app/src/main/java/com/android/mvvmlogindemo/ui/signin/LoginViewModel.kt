@@ -4,13 +4,15 @@ import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.android.mvvmlogindemo.data.models.LoginResponse
 import com.android.mvvmlogindemo.data.repos.AppRepository
 import com.android.mvvmlogindemo.utils.Resource
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val appRepository: AppRepository) : ViewModel() {
+    private val TAG = "loginViewModel"
     var userLiveData = MutableLiveData<String>()
     var passwordLiveData = MutableLiveData<String>()
 
@@ -25,9 +27,13 @@ class LoginViewModel(private val appRepository: AppRepository) : ViewModel() {
 
     fun login() {
         performValidation()
-        GlobalScope.launch {
+        // viewModelScope is also the same as the lifecycle scope, only difference is that the
+        // coroutine in this scope will live as long the view model is alive.
+
+        viewModelScope.launch(Dispatchers.IO) {
             val result = appRepository.login(userLiveData.value, passwordLiveData.value)
-            Log.d("test", "result: $result")
+            Log.d(TAG, Thread.currentThread().name)
+            Log.d(TAG, "result: $result")
             when (result) {
                 is Resource.Error -> isError.postValue(result.code)
                 is Resource.Success -> loginResponse.postValue(result.value)

@@ -52,6 +52,9 @@ dependencies {
     //sdp library
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
+    // ViewModel Scope
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha02'
+
     //Retrofit
     def retrofitVersion = '2.6.2'
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
